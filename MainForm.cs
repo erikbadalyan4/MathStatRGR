@@ -23,17 +23,14 @@ namespace MathStatRGR
             };
 
             //Добавление новык вкладок
-            tabControl.TabPages.AddRange(new TabPage[]
+            tabControl.TabPages.AddRange(new MetroTabPage[]
                 {
-                    new TabPage()
+                    new MetroTabPage()
                     {
                         Text = "Вариационные ряды"
                     },
-                    new TabPage()
-                    {
-                        Text = "Статистические оценки и гипотезы"
-                    },
-                    new TabPage()
+                    GetStatisticalEstimatesAndHypothesesPage(),
+                    new MetroTabPage()
                     {
                         Text = "Дисперсионный анализ"
                     }
@@ -41,6 +38,18 @@ namespace MathStatRGR
 
             this.Controls.Add(tabControl);
         }
+
+        private MetroTabPage GetStatisticalEstimatesAndHypothesesPage() 
+        {
+            var page = new MetroTabPage
+            {
+                Text = "Статистические оценки и гипотезы"
+            };
+
+            return page;
+        }
+
+
 
     }
 }
