@@ -46,5 +46,7 @@ namespace MathStatRGR
 
             this.Controls.Add(tabControl);
         }
+
+
     }
 }
