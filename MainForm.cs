@@ -1,8 +1,12 @@
-﻿using MetroFramework.Controls;
+﻿using ExcelDataReader;
+using MetroFramework.Controls;
 using MetroFramework.Forms;
+using System.Collections.Generic;
 using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
+using MathStatRGR.Pages;
 
 namespace MathStatRGR
 {
@@ -33,10 +37,7 @@ namespace MathStatRGR
             tabControl.TabPages.AddRange(new TabPage[]
                 {
                     variationSeriesTabPage,
-                    new TabPage()
-                    {
-                        Text = "Статистические оценки и гипотезы"
-                    },
+                    new StatisticalEstimatesAndHypothesesPage(),
                     new TabPage()
                     {
                         Text = "Дисперсионный анализ"
