@@ -30,16 +30,9 @@ namespace MathStatRGR
                 Dock = DockStyle.Fill
             };
 
-            var variationSeriesTabPage = new TabPage() { Text = "Вариационные ряды" };
-
-            var varSeriesControl = new VarSeriesControl();
-            variationSeriesTabPage.Controls.Add(varSeriesControl);
-            varSeriesControl.Dock = DockStyle.Fill;
-
-
             tabControl.TabPages.AddRange(new TabPage[]
                 {
-                    variationSeriesTabPage,
+                    new VarSeriesPage(),
                     new StatisticalEstimatesAndHypothesesPage(),
                     new TabPage()
                     {
