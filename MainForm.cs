@@ -1,7 +1,12 @@
-﻿using MetroFramework.Controls;
+﻿using ExcelDataReader;
+using MetroFramework.Controls;
 using MetroFramework.Forms;
+using System.Collections.Generic;
+using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
+using MathStatRGR.Pages;
 
 namespace MathStatRGR
 {
@@ -29,7 +34,7 @@ namespace MathStatRGR
                     {
                         Text = "Вариационные ряды"
                     },
-                    GetStatisticalEstimatesAndHypothesesPage(),
+                    new StatisticalEstimatesAndHypothesesPage(),
                     new MetroTabPage()
                     {
                         Text = "Дисперсионный анализ"
@@ -38,18 +43,6 @@ namespace MathStatRGR
 
             this.Controls.Add(tabControl);
         }
-
-        private MetroTabPage GetStatisticalEstimatesAndHypothesesPage() 
-        {
-            var page = new MetroTabPage
-            {
-                Text = "Статистические оценки и гипотезы"
-            };
-
-            return page;
-        }
-
-
 
     }
 }
