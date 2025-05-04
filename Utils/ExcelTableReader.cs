@@ -16,7 +16,8 @@ namespace MathStatRGR.Utils
             DataTableCollection dataTableCollection, 
             int sheetIndex,
             int? readableRowsCount = null,
-            int? readableColumnsCount = null) 
+            int? readableColumnsCount = null,
+            int? notDoubleColumnIndex = null) 
         {
             var dataTable = dataTableCollection[sheetIndex];
 
@@ -40,7 +41,7 @@ namespace MathStatRGR.Utils
                     var value = dataTable.Rows[i][j];
                     if (value != null) 
                     {
-                        if (double.TryParse(value.ToString(), out _))
+                        if (j == notDoubleColumnIndex || double.TryParse(value.ToString(), out _))
                         {
                             rowData.Add(value.ToString());
                         }
