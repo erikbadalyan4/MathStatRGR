@@ -27,15 +27,18 @@ namespace MathStatRGR
                 Dock = DockStyle.Fill
             };
 
-            //Добавление новык вкладок
-            tabControl.TabPages.AddRange(new MetroTabPage[]
+            var variationSeriesTabPage = new TabPage() { Text = "Вариационные ряды" };
+
+            var varSeriesControl = new VarSeriesControl();
+            variationSeriesTabPage.Controls.Add(varSeriesControl);
+            varSeriesControl.Dock = DockStyle.Fill;
+
+
+            tabControl.TabPages.AddRange(new TabPage[]
                 {
-                    new MetroTabPage()
-                    {
-                        Text = "Вариационные ряды"
-                    },
+                    variationSeriesTabPage,
                     new StatisticalEstimatesAndHypothesesPage(),
-                    new MetroTabPage()
+                    new TabPage()
                     {
                         Text = "Дисперсионный анализ"
                     }
@@ -43,6 +46,5 @@ namespace MathStatRGR
 
             this.Controls.Add(tabControl);
         }
-
     }
 }
