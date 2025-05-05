@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             this.tableLabel = new MetroFramework.Controls.MetroLabel();
             this.unrepeatableRadioButton = new MetroFramework.Controls.MetroRadioButton();
             this.selectionTypeGroupBox = new System.Windows.Forms.GroupBox();
@@ -65,8 +65,11 @@
             this.alphaTextBox = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.resultCapacityLabel = new MetroFramework.Controls.MetroLabel();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.resultBorderLabel = new MetroFramework.Controls.MetroLabel();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.resultVerLabel = new MetroFramework.Controls.MetroLabel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -83,6 +86,9 @@
             this.verGroupBox.SuspendLayout();
             this.hypothesesGroupBox.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
@@ -699,53 +705,96 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.groupBox3.Controls.Add(this.resultCapacityLabel);
-            this.groupBox3.Controls.Add(this.resultBorderLabel);
-            this.groupBox3.Controls.Add(this.resultVerLabel);
+            this.groupBox3.Controls.Add(this.groupBox7);
+            this.groupBox3.Controls.Add(this.groupBox6);
+            this.groupBox3.Controls.Add(this.groupBox5);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.groupBox3.Location = new System.Drawing.Point(639, 12);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox3.Size = new System.Drawing.Size(381, 96);
+            this.groupBox3.Size = new System.Drawing.Size(381, 541);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Результат расчета оценок";
             // 
+            // groupBox7
+            // 
+            this.groupBox7.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox7.Controls.Add(this.resultCapacityLabel);
+            this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox7.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.groupBox7.Location = new System.Drawing.Point(4, 355);
+            this.groupBox7.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox7.Size = new System.Drawing.Size(371, 182);
+            this.groupBox7.TabIndex = 12;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Объем выборки";
+            // 
             // resultCapacityLabel
             // 
-            this.resultCapacityLabel.AutoSize = true;
-            this.resultCapacityLabel.Location = new System.Drawing.Point(5, 64);
+            this.resultCapacityLabel.Location = new System.Drawing.Point(5, 17);
             this.resultCapacityLabel.Name = "resultCapacityLabel";
-            this.resultCapacityLabel.Size = new System.Drawing.Size(113, 19);
+            this.resultCapacityLabel.Size = new System.Drawing.Size(357, 160);
             this.resultCapacityLabel.TabIndex = 9;
-            this.resultCapacityLabel.Text = "Объем выборки:";
+            this.resultCapacityLabel.WrapToLine = true;
+            this.resultCapacityLabel.Click += new System.EventHandler(this.resultCapacityLabel_Click);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox6.Controls.Add(this.resultBorderLabel);
+            this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox6.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.groupBox6.Location = new System.Drawing.Point(4, 247);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox6.Size = new System.Drawing.Size(371, 109);
+            this.groupBox6.TabIndex = 11;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Границы";
             // 
             // resultBorderLabel
             // 
-            this.resultBorderLabel.AutoSize = true;
-            this.resultBorderLabel.Location = new System.Drawing.Point(5, 45);
+            this.resultBorderLabel.Location = new System.Drawing.Point(5, 19);
             this.resultBorderLabel.Name = "resultBorderLabel";
-            this.resultBorderLabel.Size = new System.Drawing.Size(70, 19);
+            this.resultBorderLabel.Size = new System.Drawing.Size(361, 85);
             this.resultBorderLabel.TabIndex = 8;
-            this.resultBorderLabel.Text = "Границы: ";
+            this.resultBorderLabel.WrapToLine = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox5.Controls.Add(this.resultVerLabel);
+            this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox5.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.groupBox5.Location = new System.Drawing.Point(4, 19);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox5.Size = new System.Drawing.Size(371, 227);
+            this.groupBox5.TabIndex = 10;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Вероятность";
             // 
             // resultVerLabel
             // 
-            this.resultVerLabel.AutoSize = true;
-            this.resultVerLabel.Location = new System.Drawing.Point(5, 26);
+            this.resultVerLabel.Location = new System.Drawing.Point(5, 20);
             this.resultVerLabel.Name = "resultVerLabel";
-            this.resultVerLabel.Size = new System.Drawing.Size(92, 19);
+            this.resultVerLabel.Size = new System.Drawing.Size(365, 199);
             this.resultVerLabel.TabIndex = 7;
-            this.resultVerLabel.Text = "Вероятность: ";
+            this.resultVerLabel.WrapToLine = true;
             // 
             // chart1
             // 
             this.chart1.BorderlineColor = System.Drawing.SystemColors.ControlLight;
             this.chart1.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            chartArea4.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea4);
             this.chart1.Location = new System.Drawing.Point(5, 157);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(370, 286);
@@ -761,7 +810,7 @@
             this.groupBox4.Controls.Add(this.resultPirsonLabel);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.groupBox4.Location = new System.Drawing.Point(639, 122);
+            this.groupBox4.Location = new System.Drawing.Point(1037, 12);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
@@ -838,7 +887,7 @@
             this.Controls.Add(this.tableLabel);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "StatisticalEstimatesAndHypothesesControls";
-            this.Size = new System.Drawing.Size(1031, 572);
+            this.Size = new System.Drawing.Size(1440, 572);
             this.Load += new System.EventHandler(this.StatisticalEstimatesAndHypothesesControls_Load);
             this.selectionTypeGroupBox.ResumeLayout(false);
             this.selectionTypeGroupBox.PerformLayout();
@@ -852,7 +901,9 @@
             this.hypothesesGroupBox.ResumeLayout(false);
             this.hypothesesGroupBox.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
@@ -910,5 +961,8 @@
         private System.Windows.Forms.DataGridView table;
         private System.Windows.Forms.DataGridViewTextBoxColumn Interval;
         private System.Windows.Forms.DataGridViewTextBoxColumn Value;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox groupBox7;
     }
 }

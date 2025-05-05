@@ -71,7 +71,7 @@ namespace MathStatRGR.Pages
 
                 if (sheetIndex == -1) return;
 
-                ExcelTableReader.LoadTableToDataGridView(this.table, dataTableCollection, sheetIndex, readableColumnsCount: 2);
+                ExcelTableReader.LoadTableToDataGridView(this.table, dataTableCollection, sheetIndex, readableColumnsCount: 2, notDoubleColumnIndex: 0);
 
             }
             catch (System.Exception ex)
@@ -131,10 +131,14 @@ namespace MathStatRGR.Pages
             {
                 Dictionary<string, double> data = new Dictionary<string, double>();
                 string tableInterval = table.Rows[0].Cells[0].Value?.ToString();
-                if (string.IsNullOrEmpty(tableInterval) || !Regex.IsMatch(tableInterval, @"^(\d+|\d+-\d+)$"))
+
+                tableInterval = tableInterval?.Replace("–", "-").Replace("—", "-");
+
+                if (string.IsNullOrEmpty(tableInterval) || !Regex.IsMatch(tableInterval, @"^\d+$"))
                 {
                     MessageBox.Show("Недопустимый тип данных для интервала на строке 0." +
-                            "\nИнтервал должен быть записан без пробелов и других символов,\nнапример 2-5 или одним числом, если он первый или последний в таблице");
+                            "\nПервый интервал должен быть записан одним числом. " +
+                            "\nНапример, если в условии задачи менее 5, то надо написать в таблицу 5!");
                     return;
                 }
                 double tableIntervalValue;
@@ -150,10 +154,13 @@ namespace MathStatRGR.Pages
                 {
                     var row = table.Rows[i];
                     tableInterval = row.Cells[0].Value?.ToString();
+
+                    tableInterval = tableInterval?.Replace("–", "-").Replace("—", "-");
+
                     if (string.IsNullOrEmpty(tableInterval) || !Regex.IsMatch(tableInterval, @"^\d+-\d+$"))
                     {
                         MessageBox.Show($"Недопустимый тип данных для интервала на строке {i}." +
-                            "\nИнтервал должен быть записан без пробелов и других символов,\nнапример 2-5 или одним числом, если он первый или последний в таблице");
+                            "\nИнтервал должен быть записан без пробелов и других символов,\nнапример 2-5");
                         return;
                     }
                     if (!double.TryParse(row.Cells[1].Value?.ToString(), out tableIntervalValue))
@@ -166,10 +173,14 @@ namespace MathStatRGR.Pages
                 }
 
                 tableInterval = table.Rows[i].Cells[0].Value?.ToString();
-                if (string.IsNullOrEmpty(tableInterval) || !Regex.IsMatch(tableInterval, @"^(\d+|\d+-\d+)$"))
+
+                tableInterval = tableInterval?.Replace("–", "-").Replace("—", "-");
+
+                if (string.IsNullOrEmpty(tableInterval) || !Regex.IsMatch(tableInterval, @"^\d+$"))
                 {
                     MessageBox.Show($"Недопустимый тип данных для интервала на строке {i}." +
-                            "\nИнтервал должен быть записан без пробелов и других символов,\nнапример 2-5 или одним числом, если он первый или последний в таблице");
+                             "\nПоследний интервал должен быть записан одним числом. " +
+                             "\nНапример, если в условии задачи более 30, то надо написать в таблицу 30!");
                     return;
                 }
                 if (!double.TryParse(table.Rows[i].Cells[1].Value?.ToString(), out tableIntervalValue))
@@ -179,12 +190,13 @@ namespace MathStatRGR.Pages
                 }
                 data.Add(tableInterval, tableIntervalValue);
 
-                var minTableIntervalValue = double.Parse(data.FirstOrDefault().Key.Split('-').LastOrDefault());
-                var maxTableIntervalValue = double.Parse(data.LastOrDefault().Key.Split('_').LastOrDefault());
-
+                var minTableIntervalValue = double.Parse(data.FirstOrDefault().Key.Split(new[] { '-', '–', '—' }, StringSplitOptions.None).LastOrDefault());
+                var maxTableIntervalValue1 = double.Parse(data.LastOrDefault().Key.Split(new[] { '-', '–', '—' }, StringSplitOptions.None).FirstOrDefault());
+                var maxTableIntervalValue2 = double.Parse(data.LastOrDefault().Key.Split(new[] { '-', '–', '—' }, StringSplitOptions.None).LastOrDefault());
+                
                 double verAvgDiff = 0;
                 double theshold = 0;
-                string thesholdConditionType = verShareThresholdComboBox.SelectedText == "более чем" ? ">" : "<";
+                string thesholdConditionType = verShareThresholdComboBox.Text == "более чем" ? ">" : "<";
                 double verShareDiff = 0;
                 if (verAvgRadioButton.Checked)
                 {
@@ -204,17 +216,17 @@ namespace MathStatRGR.Pages
                         MessageBox.Show("Недопустимый тип данных для значения порога");
                         return;
                     }
-                    
-                    if (theshold >= minTableIntervalValue && theshold <= maxTableIntervalValue)
+
+                    if (theshold >= minTableIntervalValue && theshold <= maxTableIntervalValue2)
                     {
                         verAvgDiff = theshold;
                     }
-                    else 
+                    else
                     {
-                        MessageBox.Show($"Значение порога должно лежать между {minTableIntervalValue} и {maxTableIntervalValue}");
+                        MessageBox.Show($"Значение порога должно лежать между {minTableIntervalValue} и {maxTableIntervalValue2}");
                         return;
                     }
-                
+
 
                     if (!double.TryParse(verShareTextBox.Text, out verShareDiff))
                     {
@@ -244,7 +256,7 @@ namespace MathStatRGR.Pages
                 double interval2;
                 if (string.IsNullOrWhiteSpace(bordersIntervalTextBox2.Text))
                 {
-                    interval2 = 0;
+                    interval2 = (int)(maxTableIntervalValue1 * bordersVer);
                 }
                 else if (!double.TryParse(bordersIntervalTextBox2.Text, out interval2))
                 {
@@ -284,7 +296,8 @@ namespace MathStatRGR.Pages
 
                 var jsonOptions = new JsonSerializerOptions
                 {
-                    WriteIndented = true
+                    WriteIndented = true,
+                    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
                 };
                 string jsonData = JsonSerializer.Serialize(requestData, jsonOptions);
 
@@ -298,7 +311,18 @@ namespace MathStatRGR.Pages
                     if (response.IsSuccessStatusCode)
                     {
                         string responseBody = await response.Content.ReadAsStringAsync();
-                        MessageBox.Show("Успешно отправлено! Ответ: " + responseBody);
+
+                        // Десериализация JSON с использованием JsonDocument
+                        using (JsonDocument document = JsonDocument.Parse(responseBody))
+                        {
+                            resultVerLabel.Text = verAvgRadioButton.Checked ? 
+                                document.RootElement.GetProperty("taskA").GetString() : 
+                                document.RootElement.GetProperty("taskD").GetString();
+                            var taskB = document.RootElement.GetProperty("taskB").GetString().Split('\n');
+                            resultBorderLabel.Text = string.Join("\n", taskB[1], taskB[2]);
+
+                            resultCapacityLabel.Text = document.RootElement.GetProperty("taskC").GetString();
+                        }
                     }
                     else
                     {
@@ -313,5 +337,9 @@ namespace MathStatRGR.Pages
 
         }
 
+        private void resultCapacityLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
