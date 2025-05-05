@@ -19,7 +19,7 @@ namespace MathStatRGR
 
         private void InitializeComponents()
         {
-            var formSize = new Size(1450, 680);
+            var formSize = new Size(1450, 720);
             this.Size = formSize;
             this.MaximumSize = formSize;
             this.MinimumSize = formSize;
