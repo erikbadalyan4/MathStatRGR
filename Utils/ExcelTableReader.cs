@@ -48,6 +48,7 @@ namespace MathStatRGR.Utils
                         else
                         {
                             MessageBox.Show($"Невозможно загрузить таблицу, ячейка [{i},{j}] содержит неправильный формат данных!");
+                            return;
                         }
                     }
                     else 

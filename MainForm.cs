@@ -19,7 +19,10 @@ namespace MathStatRGR
 
         private void InitializeComponents()
         {
-            this.Size = new Size(1280, 960);
+            var formSize = new Size(1450, 680);
+            this.Size = formSize;
+            this.MaximumSize = formSize;
+            this.MinimumSize = formSize;
             this.Text = "MathStatRGR";
 
             var tabControl = new MetroTabControl
