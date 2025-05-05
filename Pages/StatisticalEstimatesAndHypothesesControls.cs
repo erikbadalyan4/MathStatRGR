@@ -14,6 +14,7 @@ using System.Xml;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Net.Http;
+using MathStatRGR.Models;
 
 namespace MathStatRGR.Pages
 {
@@ -190,6 +191,8 @@ namespace MathStatRGR.Pages
                 }
                 data.Add(tableInterval, tableIntervalValue);
 
+                if (data == null) return;
+
                 var minTableIntervalValue = double.Parse(data.FirstOrDefault().Key.Split(new[] { '-', '–', '—' }, StringSplitOptions.None).LastOrDefault());
                 var maxTableIntervalValue1 = double.Parse(data.LastOrDefault().Key.Split(new[] { '-', '–', '—' }, StringSplitOptions.None).FirstOrDefault());
                 var maxTableIntervalValue2 = double.Parse(data.LastOrDefault().Key.Split(new[] { '-', '–', '—' }, StringSplitOptions.None).LastOrDefault());
@@ -344,7 +347,74 @@ namespace MathStatRGR.Pages
 
         private void hypothesesButton_Click(object sender, EventArgs e)
         {
-            
+            List<Interval> intervals = new List<Interval>();
+            string tableInterval = table.Rows[0].Cells[0].Value?.ToString();
+
+            tableInterval = tableInterval?.Replace("–", "-").Replace("—", "-");
+
+            if (string.IsNullOrEmpty(tableInterval) || !Regex.IsMatch(tableInterval, @"^\d+$"))
+            {
+                MessageBox.Show("Недопустимый тип данных для интервала на строке 0." +
+                        "\nПервый интервал должен быть записан одним числом. " +
+                        "\nНапример, если в условии задачи менее 5, то надо написать в таблицу 5!");
+                return ;
+            }
+            double tableIntervalValue;
+            if (!double.TryParse(table.Rows[0].Cells[1].Value?.ToString(), out tableIntervalValue))
+            {
+                MessageBox.Show("Недопустимый тип данных для значения интервала на строке 0");
+                return;
+            }
+            intervals.Add(new Interval(0, double.Parse(tableInterval.Split(new[] { '-', '–', '—' }, StringSplitOptions.None)[0]), tableIntervalValue));
+
+            int i;
+            for (i = 1; i < table.Rows.Count - 2; i++)
+            {
+                var row = table.Rows[i];
+                tableInterval = row.Cells[0].Value?.ToString();
+
+                tableInterval = tableInterval?.Replace("–", "-").Replace("—", "-");
+
+                if (string.IsNullOrEmpty(tableInterval) || !Regex.IsMatch(tableInterval, @"^\d+-\d+$"))
+                {
+                    MessageBox.Show($"Недопустимый тип данных для интервала на строке {i}." +
+                        "\nИнтервал должен быть записан без пробелов и других символов,\nнапример 2-5");
+                    return;
+                }
+                if (!double.TryParse(row.Cells[1].Value?.ToString(), out tableIntervalValue))
+                {
+                    MessageBox.Show($"Недопустимый тип данных для значения интервала на строке {i}");
+                    return;
+                }
+                var splitedInterval = tableInterval.Split(new[] { '-', '–', '—' }, StringSplitOptions.None).Select(_ => double.Parse(_)).ToArray();
+
+                intervals.Add(new Interval(splitedInterval[0], splitedInterval[1], tableIntervalValue));
+            }
+
+            tableInterval = table.Rows[i].Cells[0].Value?.ToString();
+
+            tableInterval = tableInterval?.Replace("–", "-").Replace("—", "-");
+
+            if (string.IsNullOrEmpty(tableInterval) || !Regex.IsMatch(tableInterval, @"^\d+$"))
+            {
+                MessageBox.Show($"Недопустимый тип данных для интервала на строке {i}." +
+                         "\nПоследний интервал должен быть записан одним числом. " +
+                         "\nНапример, если в условии задачи более 30, то надо написать в таблицу 30!");
+                return;
+            }
+            if (!double.TryParse(table.Rows[i].Cells[1].Value?.ToString(), out tableIntervalValue))
+            {
+                MessageBox.Show($"Недопустимый тип данных для значения интервала на строке {i}");
+                return;
+            }
+            intervals.Add(new Interval(double.Parse(tableInterval.Split(new[] { '-', '–', '—' }, StringSplitOptions.None)[0]), 0, tableIntervalValue));
+
+            var intervalLen = intervals[1].x2 - intervals[1].x1;
+            var firstInterval = intervals.FirstOrDefault();
+            firstInterval.x1 = firstInterval.x2 - intervalLen;
+            var lastInterval = intervals.LastOrDefault();
+            lastInterval.x2 = lastInterval.x1 + intervalLen;
         }
+
     }
 }
