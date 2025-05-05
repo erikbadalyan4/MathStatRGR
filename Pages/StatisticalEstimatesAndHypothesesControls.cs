@@ -341,5 +341,10 @@ namespace MathStatRGR.Pages
         {
 
         }
+
+        private void hypothesesButton_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

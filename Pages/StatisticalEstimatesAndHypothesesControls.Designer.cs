@@ -28,11 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            this.tableLabel = new MetroFramework.Controls.MetroLabel();
-            this.unrepeatableRadioButton = new MetroFramework.Controls.MetroRadioButton();
-            this.selectionTypeGroupBox = new System.Windows.Forms.GroupBox();
-            this.repetableRadioButton = new MetroFramework.Controls.MetroRadioButton();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             this.excelButton = new MetroFramework.Controls.MetroButton();
             this.estimatesGroupBox = new System.Windows.Forms.GroupBox();
             this.estimatesButton = new MetroFramework.Controls.MetroButton();
@@ -79,7 +75,7 @@
             this.table = new System.Windows.Forms.DataGridView();
             this.Interval = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.selectionTypeGroupBox.SuspendLayout();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.estimatesGroupBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -92,68 +88,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
+            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tableLabel
-            // 
-            this.tableLabel.AutoSize = true;
-            this.tableLabel.Location = new System.Drawing.Point(20, 12);
-            this.tableLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.tableLabel.Name = "tableLabel";
-            this.tableLabel.Size = new System.Drawing.Size(60, 19);
-            this.tableLabel.TabIndex = 1;
-            this.tableLabel.Text = "Данные:";
-            this.tableLabel.Click += new System.EventHandler(this.tableLabel_Click);
-            // 
-            // unrepeatableRadioButton
-            // 
-            this.unrepeatableRadioButton.AutoSize = true;
-            this.unrepeatableRadioButton.Checked = true;
-            this.unrepeatableRadioButton.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-            this.unrepeatableRadioButton.FontWeight = MetroFramework.MetroCheckBoxWeight.Light;
-            this.unrepeatableRadioButton.Location = new System.Drawing.Point(4, 21);
-            this.unrepeatableRadioButton.Margin = new System.Windows.Forms.Padding(2);
-            this.unrepeatableRadioButton.Name = "unrepeatableRadioButton";
-            this.unrepeatableRadioButton.Size = new System.Drawing.Size(112, 19);
-            this.unrepeatableRadioButton.TabIndex = 3;
-            this.unrepeatableRadioButton.TabStop = true;
-            this.unrepeatableRadioButton.Text = "Бесповторная";
-            this.unrepeatableRadioButton.UseSelectable = true;
-            this.unrepeatableRadioButton.CheckedChanged += new System.EventHandler(this.unrepeatableRadioButton_CheckedChanged);
-            // 
-            // selectionTypeGroupBox
-            // 
-            this.selectionTypeGroupBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.selectionTypeGroupBox.Controls.Add(this.repetableRadioButton);
-            this.selectionTypeGroupBox.Controls.Add(this.unrepeatableRadioButton);
-            this.selectionTypeGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.selectionTypeGroupBox.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.selectionTypeGroupBox.Location = new System.Drawing.Point(20, 472);
-            this.selectionTypeGroupBox.Margin = new System.Windows.Forms.Padding(2);
-            this.selectionTypeGroupBox.Name = "selectionTypeGroupBox";
-            this.selectionTypeGroupBox.Padding = new System.Windows.Forms.Padding(2);
-            this.selectionTypeGroupBox.Size = new System.Drawing.Size(295, 81);
-            this.selectionTypeGroupBox.TabIndex = 4;
-            this.selectionTypeGroupBox.TabStop = false;
-            this.selectionTypeGroupBox.Text = "Тип выборки";
-            // 
-            // repetableRadioButton
-            // 
-            this.repetableRadioButton.AutoSize = true;
-            this.repetableRadioButton.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-            this.repetableRadioButton.FontWeight = MetroFramework.MetroCheckBoxWeight.Light;
-            this.repetableRadioButton.Location = new System.Drawing.Point(4, 40);
-            this.repetableRadioButton.Margin = new System.Windows.Forms.Padding(2);
-            this.repetableRadioButton.Name = "repetableRadioButton";
-            this.repetableRadioButton.Size = new System.Drawing.Size(92, 19);
-            this.repetableRadioButton.TabIndex = 4;
-            this.repetableRadioButton.Text = "Повторная";
-            this.repetableRadioButton.UseSelectable = true;
-            this.repetableRadioButton.CheckedChanged += new System.EventHandler(this.repetableRadioButton_CheckedChanged);
             // 
             // excelButton
             // 
-            this.excelButton.Location = new System.Drawing.Point(20, 432);
+            this.excelButton.Location = new System.Drawing.Point(5, 505);
             this.excelButton.Margin = new System.Windows.Forms.Padding(2);
             this.excelButton.Name = "excelButton";
             this.excelButton.Size = new System.Drawing.Size(295, 32);
@@ -645,6 +585,7 @@
             this.hypothesesButton.TabIndex = 10;
             this.hypothesesButton.Text = "Проверить";
             this.hypothesesButton.UseSelectable = true;
+            this.hypothesesButton.Click += new System.EventHandler(this.hypothesesButton_Click);
             // 
             // hypothesesGroupBox
             // 
@@ -793,8 +734,8 @@
             // 
             this.chart1.BorderlineColor = System.Drawing.SystemColors.ControlLight;
             this.chart1.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
             this.chart1.Location = new System.Drawing.Point(5, 247);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(370, 285);
@@ -852,14 +793,15 @@
             // 
             this.table.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.table.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.table.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Interval,
             this.Value});
-            this.table.Location = new System.Drawing.Point(20, 31);
+            this.table.Location = new System.Drawing.Point(5, 20);
             this.table.Name = "table";
             this.table.RowHeadersVisible = false;
-            this.table.Size = new System.Drawing.Size(295, 396);
+            this.table.Size = new System.Drawing.Size(295, 480);
             this.table.TabIndex = 11;
             // 
             // Interval
@@ -872,25 +814,36 @@
             this.Value.HeaderText = "Значение";
             this.Value.Name = "Value";
             // 
+            // groupBox8
+            // 
+            this.groupBox8.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox8.Controls.Add(this.table);
+            this.groupBox8.Controls.Add(this.excelButton);
+            this.groupBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox8.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.groupBox8.Location = new System.Drawing.Point(10, 12);
+            this.groupBox8.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox8.Size = new System.Drawing.Size(306, 541);
+            this.groupBox8.TabIndex = 13;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Данные";
+            // 
             // StatisticalEstimatesAndHypothesesControls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.Controls.Add(this.table);
+            this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.hypothesesGroupBox);
             this.Controls.Add(this.estimatesGroupBox);
-            this.Controls.Add(this.excelButton);
-            this.Controls.Add(this.selectionTypeGroupBox);
-            this.Controls.Add(this.tableLabel);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "StatisticalEstimatesAndHypothesesControls";
             this.Size = new System.Drawing.Size(1440, 572);
             this.Load += new System.EventHandler(this.StatisticalEstimatesAndHypothesesControls_Load);
-            this.selectionTypeGroupBox.ResumeLayout(false);
-            this.selectionTypeGroupBox.PerformLayout();
             this.estimatesGroupBox.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -908,16 +861,12 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.table)).EndInit();
+            this.groupBox8.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private MetroFramework.Controls.MetroLabel tableLabel;
-        private MetroFramework.Controls.MetroRadioButton unrepeatableRadioButton;
-        private System.Windows.Forms.GroupBox selectionTypeGroupBox;
-        private MetroFramework.Controls.MetroRadioButton repetableRadioButton;
         private MetroFramework.Controls.MetroButton excelButton;
         private System.Windows.Forms.GroupBox estimatesGroupBox;
         private System.Windows.Forms.GroupBox verGroupBox;
@@ -964,5 +913,6 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.GroupBox groupBox8;
     }
 }
