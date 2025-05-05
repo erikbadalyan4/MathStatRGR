@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             this.tableLabel = new MetroFramework.Controls.MetroLabel();
             this.unrepeatableRadioButton = new MetroFramework.Controls.MetroRadioButton();
             this.selectionTypeGroupBox = new System.Windows.Forms.GroupBox();
@@ -171,7 +171,7 @@
             this.estimatesGroupBox.Controls.Add(this.verGroupBox);
             this.estimatesGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.estimatesGroupBox.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.estimatesGroupBox.Location = new System.Drawing.Point(337, 12);
+            this.estimatesGroupBox.Location = new System.Drawing.Point(324, 12);
             this.estimatesGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.estimatesGroupBox.Name = "estimatesGroupBox";
             this.estimatesGroupBox.Padding = new System.Windows.Forms.Padding(2);
@@ -654,7 +654,7 @@
             this.hypothesesGroupBox.Controls.Add(this.metroLabel7);
             this.hypothesesGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.hypothesesGroupBox.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.hypothesesGroupBox.Location = new System.Drawing.Point(337, 460);
+            this.hypothesesGroupBox.Location = new System.Drawing.Point(324, 460);
             this.hypothesesGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.hypothesesGroupBox.Name = "hypothesesGroupBox";
             this.hypothesesGroupBox.Padding = new System.Windows.Forms.Padding(2);
@@ -710,7 +710,7 @@
             this.groupBox3.Controls.Add(this.groupBox5);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.groupBox3.Location = new System.Drawing.Point(639, 12);
+            this.groupBox3.Location = new System.Drawing.Point(621, 12);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
@@ -793,11 +793,11 @@
             // 
             this.chart1.BorderlineColor = System.Drawing.SystemColors.ControlLight;
             this.chart1.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea4.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea4);
-            this.chart1.Location = new System.Drawing.Point(5, 157);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            this.chart1.Location = new System.Drawing.Point(5, 247);
             this.chart1.Name = "chart1";
-            this.chart1.Size = new System.Drawing.Size(370, 286);
+            this.chart1.Size = new System.Drawing.Size(370, 285);
             this.chart1.TabIndex = 9;
             this.chart1.Text = "chart1";
             // 
@@ -810,11 +810,11 @@
             this.groupBox4.Controls.Add(this.resultPirsonLabel);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.groupBox4.Location = new System.Drawing.Point(1037, 12);
+            this.groupBox4.Location = new System.Drawing.Point(1012, 12);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox4.Size = new System.Drawing.Size(381, 448);
+            this.groupBox4.Size = new System.Drawing.Size(381, 541);
             this.groupBox4.TabIndex = 10;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Результат проверки гипотез";
@@ -822,7 +822,7 @@
             // metroLabel8
             // 
             this.metroLabel8.AutoSize = true;
-            this.metroLabel8.Location = new System.Drawing.Point(52, 116);
+            this.metroLabel8.Location = new System.Drawing.Point(43, 200);
             this.metroLabel8.Name = "metroLabel8";
             this.metroLabel8.Size = new System.Drawing.Size(287, 38);
             this.metroLabel8.TabIndex = 10;
@@ -832,7 +832,7 @@
             // resultKolmogorLabel
             // 
             this.resultKolmogorLabel.AutoSize = true;
-            this.resultKolmogorLabel.Location = new System.Drawing.Point(5, 60);
+            this.resultKolmogorLabel.Location = new System.Drawing.Point(5, 110);
             this.resultKolmogorLabel.Name = "resultKolmogorLabel";
             this.resultKolmogorLabel.Size = new System.Drawing.Size(184, 19);
             this.resultKolmogorLabel.TabIndex = 8;

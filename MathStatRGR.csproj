@@ -128,6 +128,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\ExcelTableReader.cs" />
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\StatisticalEstimatesAndHypothesesControls.resx">
       <DependentUpon>StatisticalEstimatesAndHypothesesControls.cs</DependentUpon>
     </EmbeddedResource>
