@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            this.tableLabel = new MetroFramework.Controls.MetroLabel();
-            this.unrepeatableRadioButton = new MetroFramework.Controls.MetroRadioButton();
-            this.selectionTypeGroupBox = new System.Windows.Forms.GroupBox();
-            this.repetableRadioButton = new MetroFramework.Controls.MetroRadioButton();
             this.excelButton = new MetroFramework.Controls.MetroButton();
             this.estimatesGroupBox = new System.Windows.Forms.GroupBox();
             this.estimatesButton = new MetroFramework.Controls.MetroButton();
@@ -73,13 +69,14 @@
             this.resultVerLabel = new MetroFramework.Controls.MetroLabel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
             this.resultKolmogorLabel = new MetroFramework.Controls.MetroLabel();
             this.resultPirsonLabel = new MetroFramework.Controls.MetroLabel();
             this.table = new System.Windows.Forms.DataGridView();
             this.Interval = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.selectionTypeGroupBox.SuspendLayout();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.estimatesGroupBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -92,68 +89,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
+            this.groupBox8.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tableLabel
-            // 
-            this.tableLabel.AutoSize = true;
-            this.tableLabel.Location = new System.Drawing.Point(20, 12);
-            this.tableLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.tableLabel.Name = "tableLabel";
-            this.tableLabel.Size = new System.Drawing.Size(60, 19);
-            this.tableLabel.TabIndex = 1;
-            this.tableLabel.Text = "Данные:";
-            this.tableLabel.Click += new System.EventHandler(this.tableLabel_Click);
-            // 
-            // unrepeatableRadioButton
-            // 
-            this.unrepeatableRadioButton.AutoSize = true;
-            this.unrepeatableRadioButton.Checked = true;
-            this.unrepeatableRadioButton.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-            this.unrepeatableRadioButton.FontWeight = MetroFramework.MetroCheckBoxWeight.Light;
-            this.unrepeatableRadioButton.Location = new System.Drawing.Point(4, 21);
-            this.unrepeatableRadioButton.Margin = new System.Windows.Forms.Padding(2);
-            this.unrepeatableRadioButton.Name = "unrepeatableRadioButton";
-            this.unrepeatableRadioButton.Size = new System.Drawing.Size(112, 19);
-            this.unrepeatableRadioButton.TabIndex = 3;
-            this.unrepeatableRadioButton.TabStop = true;
-            this.unrepeatableRadioButton.Text = "Бесповторная";
-            this.unrepeatableRadioButton.UseSelectable = true;
-            this.unrepeatableRadioButton.CheckedChanged += new System.EventHandler(this.unrepeatableRadioButton_CheckedChanged);
-            // 
-            // selectionTypeGroupBox
-            // 
-            this.selectionTypeGroupBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.selectionTypeGroupBox.Controls.Add(this.repetableRadioButton);
-            this.selectionTypeGroupBox.Controls.Add(this.unrepeatableRadioButton);
-            this.selectionTypeGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.selectionTypeGroupBox.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.selectionTypeGroupBox.Location = new System.Drawing.Point(20, 472);
-            this.selectionTypeGroupBox.Margin = new System.Windows.Forms.Padding(2);
-            this.selectionTypeGroupBox.Name = "selectionTypeGroupBox";
-            this.selectionTypeGroupBox.Padding = new System.Windows.Forms.Padding(2);
-            this.selectionTypeGroupBox.Size = new System.Drawing.Size(295, 81);
-            this.selectionTypeGroupBox.TabIndex = 4;
-            this.selectionTypeGroupBox.TabStop = false;
-            this.selectionTypeGroupBox.Text = "Тип выборки";
-            // 
-            // repetableRadioButton
-            // 
-            this.repetableRadioButton.AutoSize = true;
-            this.repetableRadioButton.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-            this.repetableRadioButton.FontWeight = MetroFramework.MetroCheckBoxWeight.Light;
-            this.repetableRadioButton.Location = new System.Drawing.Point(4, 40);
-            this.repetableRadioButton.Margin = new System.Windows.Forms.Padding(2);
-            this.repetableRadioButton.Name = "repetableRadioButton";
-            this.repetableRadioButton.Size = new System.Drawing.Size(92, 19);
-            this.repetableRadioButton.TabIndex = 4;
-            this.repetableRadioButton.Text = "Повторная";
-            this.repetableRadioButton.UseSelectable = true;
-            this.repetableRadioButton.CheckedChanged += new System.EventHandler(this.repetableRadioButton_CheckedChanged);
             // 
             // excelButton
             // 
-            this.excelButton.Location = new System.Drawing.Point(20, 432);
+            this.excelButton.Location = new System.Drawing.Point(5, 551);
             this.excelButton.Margin = new System.Windows.Forms.Padding(2);
             this.excelButton.Name = "excelButton";
             this.excelButton.Size = new System.Drawing.Size(295, 32);
@@ -182,7 +125,7 @@
             // 
             // estimatesButton
             // 
-            this.estimatesButton.Location = new System.Drawing.Point(4, 407);
+            this.estimatesButton.Location = new System.Drawing.Point(7, 408);
             this.estimatesButton.Name = "estimatesButton";
             this.estimatesButton.Size = new System.Drawing.Size(275, 32);
             this.estimatesButton.TabIndex = 10;
@@ -199,7 +142,7 @@
             this.groupBox2.Controls.Add(this.metroLabel10);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.groupBox2.Location = new System.Drawing.Point(4, 298);
+            this.groupBox2.Location = new System.Drawing.Point(7, 299);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
@@ -299,7 +242,7 @@
             this.groupBox1.Controls.Add(this.metroLabel2);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.groupBox1.Location = new System.Drawing.Point(4, 190);
+            this.groupBox1.Location = new System.Drawing.Point(7, 191);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
@@ -456,7 +399,7 @@
             this.verGroupBox.Controls.Add(this.verShareRadioButton);
             this.verGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.verGroupBox.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.verGroupBox.Location = new System.Drawing.Point(4, 19);
+            this.verGroupBox.Location = new System.Drawing.Point(7, 20);
             this.verGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.verGroupBox.Name = "verGroupBox";
             this.verGroupBox.Padding = new System.Windows.Forms.Padding(2);
@@ -645,6 +588,7 @@
             this.hypothesesButton.TabIndex = 10;
             this.hypothesesButton.Text = "Проверить";
             this.hypothesesButton.UseSelectable = true;
+            this.hypothesesButton.Click += new System.EventHandler(this.hypothesesButton_Click);
             // 
             // hypothesesGroupBox
             // 
@@ -654,7 +598,7 @@
             this.hypothesesGroupBox.Controls.Add(this.metroLabel7);
             this.hypothesesGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.hypothesesGroupBox.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.hypothesesGroupBox.Location = new System.Drawing.Point(324, 460);
+            this.hypothesesGroupBox.Location = new System.Drawing.Point(324, 506);
             this.hypothesesGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.hypothesesGroupBox.Name = "hypothesesGroupBox";
             this.hypothesesGroupBox.Padding = new System.Windows.Forms.Padding(2);
@@ -714,7 +658,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox3.Size = new System.Drawing.Size(381, 541);
+            this.groupBox3.Size = new System.Drawing.Size(381, 587);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Результат расчета оценок";
@@ -725,7 +669,7 @@
             this.groupBox7.Controls.Add(this.resultCapacityLabel);
             this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox7.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.groupBox7.Location = new System.Drawing.Point(4, 355);
+            this.groupBox7.Location = new System.Drawing.Point(5, 401);
             this.groupBox7.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Padding = new System.Windows.Forms.Padding(2);
@@ -749,7 +693,7 @@
             this.groupBox6.Controls.Add(this.resultBorderLabel);
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox6.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.groupBox6.Location = new System.Drawing.Point(4, 247);
+            this.groupBox6.Location = new System.Drawing.Point(6, 268);
             this.groupBox6.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(2);
@@ -772,7 +716,7 @@
             this.groupBox5.Controls.Add(this.resultVerLabel);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox5.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.groupBox5.Location = new System.Drawing.Point(4, 19);
+            this.groupBox5.Location = new System.Drawing.Point(6, 19);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(2);
@@ -795,71 +739,58 @@
             this.chart1.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
-            this.chart1.Location = new System.Drawing.Point(5, 247);
+            this.chart1.Location = new System.Drawing.Point(5, 270);
             this.chart1.Name = "chart1";
-            this.chart1.Size = new System.Drawing.Size(370, 285);
+            this.chart1.Size = new System.Drawing.Size(370, 312);
             this.chart1.TabIndex = 9;
             this.chart1.Text = "chart1";
             // 
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.groupBox4.Controls.Add(this.metroLabel8);
-            this.groupBox4.Controls.Add(this.resultKolmogorLabel);
+            this.groupBox4.Controls.Add(this.groupBox10);
+            this.groupBox4.Controls.Add(this.groupBox9);
             this.groupBox4.Controls.Add(this.chart1);
-            this.groupBox4.Controls.Add(this.resultPirsonLabel);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.groupBox4.Location = new System.Drawing.Point(1012, 12);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox4.Size = new System.Drawing.Size(381, 541);
+            this.groupBox4.Size = new System.Drawing.Size(381, 587);
             this.groupBox4.TabIndex = 10;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Результат проверки гипотез";
             // 
-            // metroLabel8
-            // 
-            this.metroLabel8.AutoSize = true;
-            this.metroLabel8.Location = new System.Drawing.Point(43, 200);
-            this.metroLabel8.Name = "metroLabel8";
-            this.metroLabel8.Size = new System.Drawing.Size(287, 38);
-            this.metroLabel8.TabIndex = 10;
-            this.metroLabel8.Text = "Гистограмма эмперического распределения \r\nи нормальная кривая";
-            this.metroLabel8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // resultKolmogorLabel
             // 
-            this.resultKolmogorLabel.AutoSize = true;
-            this.resultKolmogorLabel.Location = new System.Drawing.Point(5, 110);
+            this.resultKolmogorLabel.Location = new System.Drawing.Point(5, 17);
             this.resultKolmogorLabel.Name = "resultKolmogorLabel";
-            this.resultKolmogorLabel.Size = new System.Drawing.Size(184, 19);
+            this.resultKolmogorLabel.Size = new System.Drawing.Size(360, 90);
             this.resultKolmogorLabel.TabIndex = 8;
-            this.resultKolmogorLabel.Text = "По критерию Колмогорова: ";
-            this.resultKolmogorLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.resultKolmogorLabel.WrapToLine = true;
             // 
             // resultPirsonLabel
             // 
-            this.resultPirsonLabel.AutoSize = true;
-            this.resultPirsonLabel.Location = new System.Drawing.Point(5, 26);
+            this.resultPirsonLabel.Location = new System.Drawing.Point(5, 17);
             this.resultPirsonLabel.Name = "resultPirsonLabel";
-            this.resultPirsonLabel.Size = new System.Drawing.Size(156, 19);
+            this.resultPirsonLabel.Size = new System.Drawing.Size(360, 111);
             this.resultPirsonLabel.TabIndex = 7;
-            this.resultPirsonLabel.Text = "По критерию Пирсона: ";
+            this.resultPirsonLabel.WrapToLine = true;
             // 
             // table
             // 
             this.table.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.table.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.table.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Interval,
             this.Value});
-            this.table.Location = new System.Drawing.Point(20, 31);
+            this.table.Location = new System.Drawing.Point(7, 20);
             this.table.Name = "table";
             this.table.RowHeadersVisible = false;
-            this.table.Size = new System.Drawing.Size(295, 396);
+            this.table.Size = new System.Drawing.Size(295, 531);
             this.table.TabIndex = 11;
             // 
             // Interval
@@ -872,25 +803,66 @@
             this.Value.HeaderText = "Значение";
             this.Value.Name = "Value";
             // 
+            // groupBox8
+            // 
+            this.groupBox8.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox8.Controls.Add(this.table);
+            this.groupBox8.Controls.Add(this.excelButton);
+            this.groupBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox8.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.groupBox8.Location = new System.Drawing.Point(10, 12);
+            this.groupBox8.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox8.Size = new System.Drawing.Size(306, 587);
+            this.groupBox8.TabIndex = 13;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Данные";
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox9.Controls.Add(this.resultPirsonLabel);
+            this.groupBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox9.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.groupBox9.Location = new System.Drawing.Point(5, 20);
+            this.groupBox9.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox9.Size = new System.Drawing.Size(370, 131);
+            this.groupBox9.TabIndex = 11;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "По критерию Пирсона: ";
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox10.Controls.Add(this.resultKolmogorLabel);
+            this.groupBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox10.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.groupBox10.Location = new System.Drawing.Point(5, 150);
+            this.groupBox10.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox10.Size = new System.Drawing.Size(370, 115);
+            this.groupBox10.TabIndex = 12;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "По критерию Колмогорова: ";
+            // 
             // StatisticalEstimatesAndHypothesesControls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.Controls.Add(this.table);
+            this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.hypothesesGroupBox);
             this.Controls.Add(this.estimatesGroupBox);
-            this.Controls.Add(this.excelButton);
-            this.Controls.Add(this.selectionTypeGroupBox);
-            this.Controls.Add(this.tableLabel);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "StatisticalEstimatesAndHypothesesControls";
-            this.Size = new System.Drawing.Size(1440, 572);
+            this.Size = new System.Drawing.Size(1440, 608);
             this.Load += new System.EventHandler(this.StatisticalEstimatesAndHypothesesControls_Load);
-            this.selectionTypeGroupBox.ResumeLayout(false);
-            this.selectionTypeGroupBox.PerformLayout();
             this.estimatesGroupBox.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -906,18 +878,15 @@
             this.groupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.table)).EndInit();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private MetroFramework.Controls.MetroLabel tableLabel;
-        private MetroFramework.Controls.MetroRadioButton unrepeatableRadioButton;
-        private System.Windows.Forms.GroupBox selectionTypeGroupBox;
-        private MetroFramework.Controls.MetroRadioButton repetableRadioButton;
         private MetroFramework.Controls.MetroButton excelButton;
         private System.Windows.Forms.GroupBox estimatesGroupBox;
         private System.Windows.Forms.GroupBox verGroupBox;
@@ -957,12 +926,14 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private MetroFramework.Controls.MetroLabel resultKolmogorLabel;
         private MetroFramework.Controls.MetroLabel resultPirsonLabel;
-        private MetroFramework.Controls.MetroLabel metroLabel8;
         private System.Windows.Forms.DataGridView table;
         private System.Windows.Forms.DataGridViewTextBoxColumn Interval;
         private System.Windows.Forms.DataGridViewTextBoxColumn Value;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.GroupBox groupBox10;
     }
 }
