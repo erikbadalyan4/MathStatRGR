@@ -15,6 +15,8 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Net.Http;
 using MathStatRGR.Models;
+using MathStatRGR.StatisticsCalculator;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace MathStatRGR.Pages
 {
@@ -24,6 +26,7 @@ namespace MathStatRGR.Pages
         {
             InitializeComponent();
             verShareThresholdComboBox.SelectedIndex = 0;
+            chart1.Titles.Add("Гистограмма и нормальная кривая");
         }
 
         private void StatisticalEstimatesAndHypothesesControls_Load(object sender, EventArgs e)
@@ -347,6 +350,8 @@ namespace MathStatRGR.Pages
 
         private void hypothesesButton_Click(object sender, EventArgs e)
         {
+            Models.Interval.n = 0;
+
             List<Interval> intervals = new List<Interval>();
             string tableInterval = table.Rows[0].Cells[0].Value?.ToString();
 
@@ -410,10 +415,27 @@ namespace MathStatRGR.Pages
             intervals.Add(new Interval(double.Parse(tableInterval.Split(new[] { '-', '–', '—' }, StringSplitOptions.None)[0]), 0, tableIntervalValue));
 
             var intervalLen = intervals[1].x2 - intervals[1].x1;
+
             var firstInterval = intervals.FirstOrDefault();
             firstInterval.x1 = firstInterval.x2 - intervalLen;
+            firstInterval.SetIntervalMedium();
+
             var lastInterval = intervals.LastOrDefault();
             lastInterval.x2 = lastInterval.x1 + intervalLen;
+            lastInterval.SetIntervalMedium();
+
+            double a;
+            if (!double.TryParse(alphaTextBox.Text, out a))
+            {
+                MessageBox.Show("Недопустимый тип данных для уровня значимости!");
+                return;
+            }
+
+            var hypothesesCalculator = new HypothesesCalculator(intervals, a);
+
+            resultPirsonLabel.Text = hypothesesCalculator.Pirson();
+            resultKolmogorLabel.Text = hypothesesCalculator.Kolmogorov();
+            hypothesesCalculator.SetupChart(chart1);
         }
 
     }
