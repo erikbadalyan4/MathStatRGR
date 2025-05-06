@@ -438,5 +438,9 @@ namespace MathStatRGR.Pages
             hypothesesCalculator.SetupChart(chart1);
         }
 
+        private void clearTableButton_Click(object sender, EventArgs e)
+        {
+            table.Rows.Clear();
+        }
     }
 }

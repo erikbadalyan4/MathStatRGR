@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             this.excelButton = new MetroFramework.Controls.MetroButton();
             this.estimatesGroupBox = new System.Windows.Forms.GroupBox();
             this.estimatesButton = new MetroFramework.Controls.MetroButton();
@@ -69,14 +69,15 @@
             this.resultVerLabel = new MetroFramework.Controls.MetroLabel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.resultKolmogorLabel = new MetroFramework.Controls.MetroLabel();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.resultPirsonLabel = new MetroFramework.Controls.MetroLabel();
             this.table = new System.Windows.Forms.DataGridView();
             this.Interval = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.clearTableButton = new MetroFramework.Controls.MetroButton();
             this.estimatesGroupBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -88,15 +89,15 @@
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.groupBox4.SuspendLayout();
+            this.groupBox10.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
             this.groupBox8.SuspendLayout();
-            this.groupBox9.SuspendLayout();
-            this.groupBox10.SuspendLayout();
             this.SuspendLayout();
             // 
             // excelButton
             // 
-            this.excelButton.Location = new System.Drawing.Point(5, 551);
+            this.excelButton.Location = new System.Drawing.Point(6, 516);
             this.excelButton.Margin = new System.Windows.Forms.Padding(2);
             this.excelButton.Name = "excelButton";
             this.excelButton.Size = new System.Drawing.Size(295, 32);
@@ -737,8 +738,8 @@
             // 
             this.chart1.BorderlineColor = System.Drawing.SystemColors.ControlLight;
             this.chart1.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
             this.chart1.Location = new System.Drawing.Point(5, 270);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(370, 312);
@@ -762,6 +763,21 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Результат проверки гипотез";
             // 
+            // groupBox10
+            // 
+            this.groupBox10.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox10.Controls.Add(this.resultKolmogorLabel);
+            this.groupBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox10.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.groupBox10.Location = new System.Drawing.Point(5, 150);
+            this.groupBox10.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox10.Size = new System.Drawing.Size(370, 115);
+            this.groupBox10.TabIndex = 12;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "По критерию Колмогорова: ";
+            // 
             // resultKolmogorLabel
             // 
             this.resultKolmogorLabel.Location = new System.Drawing.Point(5, 17);
@@ -769,6 +785,21 @@
             this.resultKolmogorLabel.Size = new System.Drawing.Size(360, 90);
             this.resultKolmogorLabel.TabIndex = 8;
             this.resultKolmogorLabel.WrapToLine = true;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox9.Controls.Add(this.resultPirsonLabel);
+            this.groupBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox9.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.groupBox9.Location = new System.Drawing.Point(5, 20);
+            this.groupBox9.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox9.Size = new System.Drawing.Size(370, 131);
+            this.groupBox9.TabIndex = 11;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "По критерию Пирсона: ";
             // 
             // resultPirsonLabel
             // 
@@ -787,10 +818,10 @@
             this.table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Interval,
             this.Value});
-            this.table.Location = new System.Drawing.Point(7, 20);
+            this.table.Location = new System.Drawing.Point(5, 20);
             this.table.Name = "table";
             this.table.RowHeadersVisible = false;
-            this.table.Size = new System.Drawing.Size(295, 531);
+            this.table.Size = new System.Drawing.Size(295, 490);
             this.table.TabIndex = 11;
             // 
             // Interval
@@ -806,6 +837,7 @@
             // groupBox8
             // 
             this.groupBox8.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox8.Controls.Add(this.clearTableButton);
             this.groupBox8.Controls.Add(this.table);
             this.groupBox8.Controls.Add(this.excelButton);
             this.groupBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -819,35 +851,16 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Данные";
             // 
-            // groupBox9
+            // clearTableButton
             // 
-            this.groupBox9.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.groupBox9.Controls.Add(this.resultPirsonLabel);
-            this.groupBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox9.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.groupBox9.Location = new System.Drawing.Point(5, 20);
-            this.groupBox9.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox9.Size = new System.Drawing.Size(370, 131);
-            this.groupBox9.TabIndex = 11;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "По критерию Пирсона: ";
-            // 
-            // groupBox10
-            // 
-            this.groupBox10.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.groupBox10.Controls.Add(this.resultKolmogorLabel);
-            this.groupBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox10.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.groupBox10.Location = new System.Drawing.Point(5, 150);
-            this.groupBox10.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox10.Size = new System.Drawing.Size(370, 115);
-            this.groupBox10.TabIndex = 12;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "По критерию Колмогорова: ";
+            this.clearTableButton.Location = new System.Drawing.Point(5, 551);
+            this.clearTableButton.Margin = new System.Windows.Forms.Padding(2);
+            this.clearTableButton.Name = "clearTableButton";
+            this.clearTableButton.Size = new System.Drawing.Size(295, 32);
+            this.clearTableButton.TabIndex = 12;
+            this.clearTableButton.Text = "Очистить таблицу";
+            this.clearTableButton.UseSelectable = true;
+            this.clearTableButton.Click += new System.EventHandler(this.clearTableButton_Click);
             // 
             // StatisticalEstimatesAndHypothesesControls
             // 
@@ -878,10 +891,10 @@
             this.groupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.groupBox4.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.table)).EndInit();
             this.groupBox8.ResumeLayout(false);
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox10.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -935,5 +948,6 @@
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.GroupBox groupBox10;
+        private MetroFramework.Controls.MetroButton clearTableButton;
     }
 }

@@ -106,7 +106,8 @@ namespace MathStatRGR.StatisticsCalculator
             {
                 ChartType = SeriesChartType.Column,
                 Color = System.Drawing.Color.Blue,
-                BorderColor = System.Drawing.Color.Black
+                BorderColor = System.Drawing.Color.Black,
+                ["PointWidth"] = "1" 
             };
 
             List<double> intervals_centers = new List<double>();
@@ -124,10 +125,11 @@ namespace MathStatRGR.StatisticsCalculator
                 if (interval_max_x < item.x2) interval_max_x = item.x2;
             }
 
+            var midDiff = Math.Abs(intervals_centers[1] - intervals_centers[0]); // 25
+
             for (int i = 0; i < intervals_centers.Count; i++)
             {
                 histogramSeries.Points.AddXY(intervals_centers[i], intervals_wi[i]);
-                histogramSeries.Points[i].CustomProperties = "BarWidth=25";
             }
 
             chart.Series.Add(histogramSeries);
@@ -156,14 +158,27 @@ namespace MathStatRGR.StatisticsCalculator
             chartArea.AxisX.Title = "Значения";
             chartArea.AxisY.Title = "Относительная частота";
             chart.Titles.Clear();
+            chart.Titles.Add("Гистограмма и нормальная кривая");
             chart.Legends.Clear();
             chart.Legends.Add(new Legend());
             chart.Legends[0].Docking = Docking.Top;
 
             chartArea.AxisX.MajorGrid.Enabled = false;
-            chartArea.AxisX.LabelStyle.Interval = 25;
-            chartArea.AxisX.Minimum = interval_min_x;
-            chartArea.AxisX.Maximum = interval_max_x;
+            chartArea.AxisX.Minimum = interval_min_x - midDiff / 2; 
+            chartArea.AxisX.Maximum = interval_max_x + midDiff / 2; 
+
+            chartArea.AxisX.CustomLabels.Clear();
+            for (int i = 0; i < intervals_centers.Count; i++)
+            {
+                double labelPosition = intervals_centers[i];
+                chartArea.AxisX.CustomLabels.Add(
+                    labelPosition - midDiff / 2,
+                    labelPosition + midDiff / 2, 
+                    intervals_centers[i].ToString("F1") 
+                );
+            }
+
+            chartArea.AxisX.MajorTickMark.Interval = midDiff;
         }
 
     }
