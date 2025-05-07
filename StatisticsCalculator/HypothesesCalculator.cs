@@ -141,8 +141,6 @@ namespace MathStatRGR.StatisticsCalculator
                 BorderWidth = 2
             };
 
-            double disp = intervals.Sum(item => Math.Pow(item.intervalMedium - x_avg, 2) * item.ni) / Models.Interval.n;
-
             int numPoints = 100;
             double step = (interval_max_x - interval_min_x) / (numPoints - 1);
             for (int i = 0; i < numPoints; i++)
