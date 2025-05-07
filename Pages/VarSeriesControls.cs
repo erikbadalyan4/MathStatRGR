@@ -1188,13 +1188,9 @@ namespace MathStatRGR.Pages
                     DataPoint dp = series.Points[pIndex];
                     dp.AxisLabel = firstLower.ToString("G");
                     dp.IsValueShownAsLabel = false;
-                    dp.Color = Color.Red;
                     dp.ToolTip = $"Начало ({firstLower:G})\nНакопленная частота: 0";
                 }
             }
-            // For discrete, the "start" is implicitly before the first value, often not explicitly plotted at 0.
-            // The StepLine will start visually from y=0 at the first plotted point's x-value.
-
 
             for (int i = 0; i < calculatedData.Count; i++)
             {
@@ -1209,23 +1205,21 @@ namespace MathStatRGR.Pages
 
                     if (isContinuous)
                     {
-                        // Plot against the *upper* boundary of the interval
                         if (i < continuousIntervals.Count && TryParseInterval(continuousIntervals[i], out _, out double upperBound))
                         {
                             xValue = upperBound;
-                            axisLabelStr = upperBound.ToString("G"); // Label X-axis with upper bound
+                            axisLabelStr = upperBound.ToString("G");
                             toolTipValueLabel = $"Интервал: {continuousIntervals[i]}";
                         }
-                        else // Fallback or error case
+                        else
                         {
-                            xValue = point.Value; // Use midpoint if interval fails
+                            xValue = point.Value;
                             axisLabelStr = point.Value.ToString("G") + " (ошибка интервала)";
                             toolTipValueLabel = $"Середина: {point.Value.ToString("G")}";
                         }
                     }
-                    else // Discrete
+                    else
                     {
-                        // Plot against the discrete value itself
                         xValue = point.Value;
                         axisLabelStr = point.Value.ToString("G");
                         toolTipValueLabel = $"Значение: {axisLabelStr}";

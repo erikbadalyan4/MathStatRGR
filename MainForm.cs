@@ -34,10 +34,7 @@ namespace MathStatRGR
                 {
                     new VarSeriesPage(),
                     new StatisticalEstimatesAndHypothesesPage(),
-                    new TabPage()
-                    {
-                        Text = "Дисперсионный анализ"
-                    }
+                    new AnovaPage()
                 });
 
             this.Controls.Add(tabControl);
