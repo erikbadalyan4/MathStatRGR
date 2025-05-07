@@ -46,16 +46,16 @@ namespace MathStatRGR.StatisticsCalculator
             int k = intervals.Count - r - 1;
             double chi2_kr = ChiSquared.InvCDF(k, 1 - a);
 
-            string result = $"chi2 = {chi2:F4}\n";
-            result += $"chi2 по таблице = {chi2_kr:F4}\n";
+            string result = $"χ² = {chi2:F4}\n";
+            result += $"χ² кр. = {chi2_kr:F4}\n";
 
             if (chi2 < chi2_kr)
             {
-                result += $"Так как χ² < χ² из таблицы, нулевая гипотеза H0: X~N({x_avg:F4}, {mean_square:F4}) согласуется с опытными данными.";
+                result += $"Так как χ² < χ² кр., нулевая гипотеза H0: X~N({x_avg:F4}, {mean_square:F4}) согласуется с опытными данными.";
             }
             else
             {
-                result += $"Так как χ² >= χ² из таблицы, нулевая гипотеза H0: X~N({x_avg:F4}, {mean_square:F4}) не согласуется с опытными данными.";
+                result += $"Так как χ² >= χ² кр., нулевая гипотеза H0: X~N({x_avg:F4}, {mean_square:F4}) не согласуется с опытными данными.";
             }
 
             return result;
