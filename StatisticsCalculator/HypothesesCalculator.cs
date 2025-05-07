@@ -46,16 +46,16 @@ namespace MathStatRGR.StatisticsCalculator
             int k = intervals.Count - r - 1;
             double chi2_kr = ChiSquared.InvCDF(k, 1 - a);
 
-            string result = $"chi2 = {chi2:F4}\n";
-            result += $"chi2 по таблице = {chi2_kr:F4}\n";
+            string result = $"χ² = {chi2:F4}\n";
+            result += $"χ² кр. = {chi2_kr:F4}\n";
 
             if (chi2 < chi2_kr)
             {
-                result += $"Так как χ² < χ² из таблицы, нулевая гипотеза H0: X~N({x_avg:F4}, {mean_square:F4}) согласуется с опытными данными.";
+                result += $"Так как χ² < χ² кр., нулевая гипотеза H0: X~N({x_avg:F4}, {mean_square:F4}) согласуется с опытными данными.";
             }
             else
             {
-                result += $"Так как χ² >= χ² из таблицы, нулевая гипотеза H0: X~N({x_avg:F4}, {mean_square:F4}) не согласуется с опытными данными.";
+                result += $"Так как χ² >= χ² кр., нулевая гипотеза H0: X~N({x_avg:F4}, {mean_square:F4}) не согласуется с опытными данными.";
             }
 
             return result;
@@ -125,7 +125,7 @@ namespace MathStatRGR.StatisticsCalculator
                 if (interval_max_x < item.x2) interval_max_x = item.x2;
             }
 
-            var midDiff = Math.Abs(intervals_centers[1] - intervals_centers[0]); // 25
+            var midDiff = Math.Abs(intervals_centers[1] - intervals_centers[0]); 
 
             for (int i = 0; i < intervals_centers.Count; i++)
             {
@@ -142,14 +142,17 @@ namespace MathStatRGR.StatisticsCalculator
             };
 
             double disp = intervals.Sum(item => Math.Pow(item.intervalMedium - x_avg, 2) * item.ni) / Models.Interval.n;
-            double scale_factor = intervals_wi.Max() / Normal.PDF(x_avg, Math.Sqrt(disp), intervals_centers.Average());
 
             int numPoints = 100;
             double step = (interval_max_x - interval_min_x) / (numPoints - 1);
             for (int i = 0; i < numPoints; i++)
             {
                 double x = interval_min_x + i * step;
-                double pdf = Normal.PDF(x_avg, Math.Sqrt(disp), x) * scale_factor;
+
+                //Плотность вероятности(нормальная кривая) описывает вероятность на единицу длины.
+                //Чтобы получить вероятность для конечного интервала длиной Δx (в данном случае midDiff),
+                //Нужно умножить значение плотности на длину этого интервала
+                double pdf = Normal.PDF(x_avg, mean_square, x) * midDiff;
                 pdfSeries.Points.AddXY(x, pdf);
             }
 

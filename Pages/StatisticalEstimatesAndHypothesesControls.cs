@@ -75,7 +75,7 @@ namespace MathStatRGR.Pages
 
                 if (sheetIndex == -1) return;
 
-                ExcelTableReader.LoadTableToDataGridView(this.table, dataTableCollection, sheetIndex, readableColumnsCount: 2, notDoubleColumnIndex: 0);
+                ExcelTableReader.LoadTableToDataGridView(this.table, dataTableCollection, sheetIndex, readableColumnsCount: 3);
 
             }
             catch (System.Exception ex)
@@ -133,72 +133,28 @@ namespace MathStatRGR.Pages
         {
             try
             {
+                var intervals = GetIntervals();
+
+                if (intervals == null) return;
+
                 Dictionary<string, double> data = new Dictionary<string, double>();
-                string tableInterval = table.Rows[0].Cells[0].Value?.ToString();
 
-                tableInterval = tableInterval?.Replace("–", "-").Replace("—", "-");
-
-                if (string.IsNullOrEmpty(tableInterval) || !Regex.IsMatch(tableInterval, @"^\d+$"))
+                int i = 0;
+                //Добавление первого интервала одним числом
+                data.Add(intervals[i].x2.ToString(), intervals[i].ni);
+                
+                //Добавление интервалов, не являющихся первыми или последними
+                for(i = 1; i <= intervals.Count - 2; i++) 
                 {
-                    MessageBox.Show("Недопустимый тип данных для интервала на строке 0." +
-                            "\nПервый интервал должен быть записан одним числом. " +
-                            "\nНапример, если в условии задачи менее 5, то надо написать в таблицу 5!");
-                    return;
-                }
-                double tableIntervalValue;
-                if (!double.TryParse(table.Rows[0].Cells[1].Value?.ToString(), out tableIntervalValue))
-                {
-                    MessageBox.Show("Недопустимый тип данных для значения интервала на строке 0");
-                    return;
-                }
-                data.Add(tableInterval, tableIntervalValue);
-
-                int i;
-                for (i = 1; i < table.Rows.Count - 2; i++)
-                {
-                    var row = table.Rows[i];
-                    tableInterval = row.Cells[0].Value?.ToString();
-
-                    tableInterval = tableInterval?.Replace("–", "-").Replace("—", "-");
-
-                    if (string.IsNullOrEmpty(tableInterval) || !Regex.IsMatch(tableInterval, @"^\d+-\d+$"))
-                    {
-                        MessageBox.Show($"Недопустимый тип данных для интервала на строке {i}." +
-                            "\nИнтервал должен быть записан без пробелов и других символов,\nнапример 2-5");
-                        return;
-                    }
-                    if (!double.TryParse(row.Cells[1].Value?.ToString(), out tableIntervalValue))
-                    {
-                        MessageBox.Show($"Недопустимый тип данных для значения интервала на строке {i}");
-                        return;
-                    }
-
-                    data.Add(tableInterval, tableIntervalValue);
+                    data.Add(string.Join("-", intervals[i].x1, intervals[i].x2), intervals[i].ni);
                 }
 
-                tableInterval = table.Rows[i].Cells[0].Value?.ToString();
+                //Добавление последнего интервала одним числом
+                data.Add(intervals[i].x1.ToString(), intervals[i].ni);
 
-                tableInterval = tableInterval?.Replace("–", "-").Replace("—", "-");
-
-                if (string.IsNullOrEmpty(tableInterval) || !Regex.IsMatch(tableInterval, @"^\d+$"))
-                {
-                    MessageBox.Show($"Недопустимый тип данных для интервала на строке {i}." +
-                             "\nПоследний интервал должен быть записан одним числом. " +
-                             "\nНапример, если в условии задачи более 30, то надо написать в таблицу 30!");
-                    return;
-                }
-                if (!double.TryParse(table.Rows[i].Cells[1].Value?.ToString(), out tableIntervalValue))
-                {
-                    MessageBox.Show($"Недопустимый тип данных для значения интервала на строке {i}");
-                    return;
-                }
-                data.Add(tableInterval, tableIntervalValue);
-
-                if (data == null) return;
-
-                var minTableIntervalValue = double.Parse(data.FirstOrDefault().Key.Split(new[] { '-', '–', '—' }, StringSplitOptions.None).LastOrDefault());
-                var maxTableIntervalValue1 = double.Parse(data.LastOrDefault().Key.Split(new[] { '-', '–', '—' }, StringSplitOptions.None).FirstOrDefault());
-                var maxTableIntervalValue2 = double.Parse(data.LastOrDefault().Key.Split(new[] { '-', '–', '—' }, StringSplitOptions.None).LastOrDefault());
+                var minTableIntervalValue = intervals[0].x1;
+                var maxTableIntervalValue1 = intervals[i].x1;
+                var maxTableIntervalValue2 = intervals[i].x2;
                 
                 double verAvgDiff = 0;
                 double theshold = 0;
@@ -241,8 +197,7 @@ namespace MathStatRGR.Pages
                     }
                 }
 
-                double bordersVer;
-                if (!double.TryParse(bordersVerTextBox.Text, out bordersVer))
+                if (!double.TryParse(bordersVerTextBox.Text, out double bordersVer))
                 {
                     MessageBox.Show("Недопустимый тип данных для вероятности вычисления границ");
                     return;
@@ -262,7 +217,7 @@ namespace MathStatRGR.Pages
                 double interval2;
                 if (string.IsNullOrWhiteSpace(bordersIntervalTextBox2.Text))
                 {
-                    interval2 = (int)(maxTableIntervalValue1 * bordersVer);
+                    interval2 = maxTableIntervalValue2;
                 }
                 else if (!double.TryParse(bordersIntervalTextBox2.Text, out interval2))
                 {
@@ -270,14 +225,12 @@ namespace MathStatRGR.Pages
                     return;
                 }
 
-                double capacityVer;
-                if (!double.TryParse(capacityVerTextBox.Text, out capacityVer))
+                if (!double.TryParse(capacityVerTextBox.Text, out double capacityVer))
                 {
                     MessageBox.Show("Недопустимый тип данных для вычисления вероятности объема выборки");
                     return;
                 }
-                double N;
-                if (!double.TryParse(capacityNTextBox.Text, out N))
+                if (!double.TryParse(capacityNTextBox.Text, out double N))
                 {
                     MessageBox.Show("Недопустимый тип данных для вычисления общего числа (N)");
                     return;
@@ -350,71 +303,157 @@ namespace MathStatRGR.Pages
 
         private void hypothesesButton_Click(object sender, EventArgs e)
         {
-            Models.Interval.n = 0;
+            try 
+            {
+                var intervals = GetIntervals();
 
+                if (intervals == null) return;
+
+                double a;
+                if (!double.TryParse(alphaTextBox.Text, out a))
+                {
+                    MessageBox.Show("Недопустимый тип данных для уровня значимости!");
+                    return;
+                }
+
+                var hypothesesCalculator = new HypothesesCalculator(intervals, a);
+
+                resultPirsonLabel.Text = hypothesesCalculator.Pirson();
+                resultKolmogorLabel.Text = hypothesesCalculator.Kolmogorov();
+                hypothesesCalculator.SetupChart(chart1);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Неожиданная ошибка: {ex.Message}");
+            }
+        }
+
+        private void clearTableButton_Click(object sender, EventArgs e)
+        {
+            table.Rows.Clear();
+        }
+
+        private void table_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private List<Interval> GetIntervals()
+        {
+            Interval.n = 0;
             List<Interval> intervals = new List<Interval>();
-            string tableInterval = table.Rows[0].Cells[0].Value?.ToString();
+            double x1, x2, intervalValue;
+            int i = 0;
 
-            tableInterval = tableInterval?.Replace("–", "-").Replace("—", "-");
+            string GetCellValue(int rowIndex, int colIndex) => table.Rows[rowIndex].Cells[colIndex].Value?.ToString();
 
-            if (string.IsNullOrEmpty(tableInterval) || !Regex.IsMatch(tableInterval, @"^\d+$"))
+            //Считывание данных с учетом, что X1 для первого интервала можно не записывать
+            string cellValue = GetCellValue(i, 0);
+            if (string.IsNullOrWhiteSpace(cellValue))
             {
-                MessageBox.Show("Недопустимый тип данных для интервала на строке 0." +
-                        "\nПервый интервал должен быть записан одним числом. " +
-                        "\nНапример, если в условии задачи менее 5, то надо написать в таблицу 5!");
-                return ;
+                x1 = double.MinValue;
             }
-            double tableIntervalValue;
-            if (!double.TryParse(table.Rows[0].Cells[1].Value?.ToString(), out tableIntervalValue))
+            else if(!double.TryParse(cellValue, out x1)) 
             {
-                MessageBox.Show("Недопустимый тип данных для значения интервала на строке 0");
-                return;
+                MessageBox.Show($"Недопустимый тип данных для интервала на строке {i} в столбце X1." +
+                    $"\nДля строки {i} X1 может быть не записан, либо должно быть число, другие типы данных не принимаются!");
+                return null;
             }
-            intervals.Add(new Interval(0, double.Parse(tableInterval.Split(new[] { '-', '–', '—' }, StringSplitOptions.None)[0]), tableIntervalValue));
-
-            int i;
-            for (i = 1; i < table.Rows.Count - 2; i++)
+            cellValue = GetCellValue(i, 1);
+            if(!double.TryParse(cellValue, out x2)) 
             {
-                var row = table.Rows[i];
-                tableInterval = row.Cells[0].Value?.ToString();
-
-                tableInterval = tableInterval?.Replace("–", "-").Replace("—", "-");
-
-                if (string.IsNullOrEmpty(tableInterval) || !Regex.IsMatch(tableInterval, @"^\d+-\d+$"))
-                {
-                    MessageBox.Show($"Недопустимый тип данных для интервала на строке {i}." +
-                        "\nИнтервал должен быть записан без пробелов и других символов,\nнапример 2-5");
-                    return;
-                }
-                if (!double.TryParse(row.Cells[1].Value?.ToString(), out tableIntervalValue))
-                {
-                    MessageBox.Show($"Недопустимый тип данных для значения интервала на строке {i}");
-                    return;
-                }
-                var splitedInterval = tableInterval.Split(new[] { '-', '–', '—' }, StringSplitOptions.None).Select(_ => double.Parse(_)).ToArray();
-
-                intervals.Add(new Interval(splitedInterval[0], splitedInterval[1], tableIntervalValue));
+                MessageBox.Show($"Недопустимый тип данных для интервала на строке {i} в столбце X2." +
+                    $"\nДля строки {i} X2 должен быть записан всегда!");
+                return null;
             }
 
-            tableInterval = table.Rows[i].Cells[0].Value?.ToString();
-
-            tableInterval = tableInterval?.Replace("–", "-").Replace("—", "-");
-
-            if (string.IsNullOrEmpty(tableInterval) || !Regex.IsMatch(tableInterval, @"^\d+$"))
+            if(x1 >= x2) 
             {
-                MessageBox.Show($"Недопустимый тип данных для интервала на строке {i}." +
-                         "\nПоследний интервал должен быть записан одним числом. " +
-                         "\nНапример, если в условии задачи более 30, то надо написать в таблицу 30!");
-                return;
+                MessageBox.Show($"Неправильно задан интервал на строке {i}, нельзя чтобы X1 >= X2");
+                return null;
             }
-            if (!double.TryParse(table.Rows[i].Cells[1].Value?.ToString(), out tableIntervalValue))
+
+            cellValue = GetCellValue(i, 2);
+            if(!double.TryParse(cellValue, out intervalValue)) 
             {
                 MessageBox.Show($"Недопустимый тип данных для значения интервала на строке {i}");
-                return;
+                return null;
             }
-            intervals.Add(new Interval(double.Parse(tableInterval.Split(new[] { '-', '–', '—' }, StringSplitOptions.None)[0]), 0, tableIntervalValue));
 
-            var intervalLen = intervals[1].x2 - intervals[1].x1;
+            intervals.Add(new Interval(x1, x2, intervalValue));
+
+            //Считывание данных с учетом, что X1 и X2 должен быть записан для всех интервалов, кроме первого и последнего
+            for (i = 1; i < table.Rows.Count - 2; i++)
+            {
+                cellValue = GetCellValue(i, 0);
+                if (!double.TryParse(cellValue, out x1))
+                {
+                    MessageBox.Show($"Недопустимый тип данных для интервала на строке {i} в столбце X1." +
+                        $"\nДля строки {i} X1 должен быть записан всегда!");
+                    return null;
+                }
+                cellValue = GetCellValue(i, 1);
+                if (!double.TryParse(cellValue, out x2))
+                {
+                    MessageBox.Show($"Недопустимый тип данных для интервала на строке {i} в столбце X2." +
+                        $"\nДля строки {i} X2 должен быть записан всегда!");
+                    return null;
+                }
+
+                if (x1 >= x2)
+                {
+                    MessageBox.Show($"Неправильно задан интервал на строке {i}, нельзя чтобы X1 >= X2");
+                    return null;
+                }
+
+                cellValue = GetCellValue(i, 2);
+                if (!double.TryParse(cellValue, out intervalValue))
+                {
+                    MessageBox.Show($"Недопустимый тип данных для значения интервала на строке {i}");
+                    return null;
+                }
+
+                intervals.Add(new Interval(x1, x2, intervalValue));
+            }
+
+            //Считывание данных с учетом, что X2 для последнего интервала можно не записывать
+            cellValue = GetCellValue(i, 0);
+            if (!double.TryParse(cellValue, out x1))
+            {
+                MessageBox.Show($"Недопустимый тип данных для интервала на строке {i} в столбце X1." +
+                    $"\nДля строки {i} X1 должен быть записан всегда!");
+                return null;
+            }
+            cellValue = GetCellValue(i, 1);
+            if (string.IsNullOrWhiteSpace(cellValue))
+            {
+                x2 = double.MaxValue;
+            }
+            else if (!double.TryParse(cellValue, out x2))
+            {
+                MessageBox.Show($"Недопустимый тип данных для интервала на строке {i} в столбце X2." +
+                    $"\nДля строки {i} X2 может быть не записан, либо должно быть число, другие типы данных не принимаются!");
+                return null;
+            }
+
+            if (x1 >= x2)
+            {
+                MessageBox.Show($"Неправильно задан интервал на строке {i}, нельзя чтобы X1 >= X2");
+                return null;
+            }
+
+            cellValue = GetCellValue(i, 2);
+            if (!double.TryParse(cellValue, out intervalValue))
+            {
+                MessageBox.Show($"Недопустимый тип данных для значения интервала на строке {i}");
+                return null;
+            }
+
+            intervals.Add(new Interval(x1, x2, intervalValue));
+
+            //Расчет длины интервала и подстраивание X1 первого интервала и X2 второго интервала 
+            var intervalLen = Math.Abs(intervals[1].x2 - intervals[1].x1);
 
             var firstInterval = intervals.FirstOrDefault();
             firstInterval.x1 = firstInterval.x2 - intervalLen;
@@ -424,23 +463,7 @@ namespace MathStatRGR.Pages
             lastInterval.x2 = lastInterval.x1 + intervalLen;
             lastInterval.SetIntervalMedium();
 
-            double a;
-            if (!double.TryParse(alphaTextBox.Text, out a))
-            {
-                MessageBox.Show("Недопустимый тип данных для уровня значимости!");
-                return;
-            }
-
-            var hypothesesCalculator = new HypothesesCalculator(intervals, a);
-
-            resultPirsonLabel.Text = hypothesesCalculator.Pirson();
-            resultKolmogorLabel.Text = hypothesesCalculator.Kolmogorov();
-            hypothesesCalculator.SetupChart(chart1);
-        }
-
-        private void clearTableButton_Click(object sender, EventArgs e)
-        {
-            table.Rows.Clear();
+            return intervals;
         }
     }
 }
