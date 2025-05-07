@@ -197,8 +197,7 @@ namespace MathStatRGR.Pages
                     }
                 }
 
-                double bordersVer;
-                if (!double.TryParse(bordersVerTextBox.Text, out bordersVer))
+                if (!double.TryParse(bordersVerTextBox.Text, out double bordersVer))
                 {
                     MessageBox.Show("Недопустимый тип данных для вероятности вычисления границ");
                     return;
@@ -218,7 +217,7 @@ namespace MathStatRGR.Pages
                 double interval2;
                 if (string.IsNullOrWhiteSpace(bordersIntervalTextBox2.Text))
                 {
-                    interval2 = (int)(maxTableIntervalValue1 * bordersVer);
+                    interval2 = maxTableIntervalValue2;
                 }
                 else if (!double.TryParse(bordersIntervalTextBox2.Text, out interval2))
                 {
@@ -226,14 +225,12 @@ namespace MathStatRGR.Pages
                     return;
                 }
 
-                double capacityVer;
-                if (!double.TryParse(capacityVerTextBox.Text, out capacityVer))
+                if (!double.TryParse(capacityVerTextBox.Text, out double capacityVer))
                 {
                     MessageBox.Show("Недопустимый тип данных для вычисления вероятности объема выборки");
                     return;
                 }
-                double N;
-                if (!double.TryParse(capacityNTextBox.Text, out N))
+                if (!double.TryParse(capacityNTextBox.Text, out double N))
                 {
                     MessageBox.Show("Недопустимый тип данных для вычисления общего числа (N)");
                     return;
@@ -306,20 +303,30 @@ namespace MathStatRGR.Pages
 
         private void hypothesesButton_Click(object sender, EventArgs e)
         {
-            var intervals = GetIntervals();
-
-            double a;
-            if (!double.TryParse(alphaTextBox.Text, out a))
+            try 
             {
-                MessageBox.Show("Недопустимый тип данных для уровня значимости!");
-                return;
+                var intervals = GetIntervals();
+
+                if (intervals == null) return;
+
+                double a;
+                if (!double.TryParse(alphaTextBox.Text, out a))
+                {
+                    MessageBox.Show("Недопустимый тип данных для уровня значимости!");
+                    return;
+                }
+
+                var hypothesesCalculator = new HypothesesCalculator(intervals, a);
+
+                resultPirsonLabel.Text = hypothesesCalculator.Pirson();
+                resultKolmogorLabel.Text = hypothesesCalculator.Kolmogorov();
+                hypothesesCalculator.SetupChart(chart1);
+
             }
-
-            var hypothesesCalculator = new HypothesesCalculator(intervals, a);
-
-            resultPirsonLabel.Text = hypothesesCalculator.Pirson();
-            resultKolmogorLabel.Text = hypothesesCalculator.Kolmogorov();
-            hypothesesCalculator.SetupChart(chart1);
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Неожиданная ошибка: {ex.Message}");
+            }
         }
 
         private void clearTableButton_Click(object sender, EventArgs e)
