@@ -187,7 +187,7 @@
             // 
             this.columnMappingTableLayout.AutoSize = true;
             this.columnMappingTableLayout.ColumnCount = 2;
-            this.columnMappingTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.columnMappingTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 180F));
             this.columnMappingTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.columnMappingTableLayout.Controls.Add(this.factorALabel, 0, 0);
             this.columnMappingTableLayout.Controls.Add(this.factorAComboBox, 1, 0);
@@ -218,11 +218,12 @@
             // factorAComboBox
             // 
             this.factorAComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.factorAComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.factorAComboBox.FormattingEnabled = true;
             this.factorAComboBox.ItemHeight = 24;
-            this.factorAComboBox.Location = new System.Drawing.Point(153, 3);
+            this.factorAComboBox.Location = new System.Drawing.Point(183, 3);
             this.factorAComboBox.Name = "factorAComboBox";
-            this.factorAComboBox.Size = new System.Drawing.Size(332, 30);
+            this.factorAComboBox.Size = new System.Drawing.Size(302, 30);
             this.factorAComboBox.TabIndex = 1;
             this.factorAComboBox.UseSelectable = true;
             // 
@@ -239,11 +240,12 @@
             // factorBComboBox
             // 
             this.factorBComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.factorBComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.factorBComboBox.FormattingEnabled = true;
             this.factorBComboBox.ItemHeight = 24;
-            this.factorBComboBox.Location = new System.Drawing.Point(153, 38);
+            this.factorBComboBox.Location = new System.Drawing.Point(183, 38);
             this.factorBComboBox.Name = "factorBComboBox";
-            this.factorBComboBox.Size = new System.Drawing.Size(332, 30);
+            this.factorBComboBox.Size = new System.Drawing.Size(302, 30);
             this.factorBComboBox.TabIndex = 3;
             this.factorBComboBox.UseSelectable = true;
             // 
@@ -260,11 +262,12 @@
             // valueComboBox
             // 
             this.valueComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.valueComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.valueComboBox.FormattingEnabled = true;
             this.valueComboBox.ItemHeight = 24;
-            this.valueComboBox.Location = new System.Drawing.Point(153, 73);
+            this.valueComboBox.Location = new System.Drawing.Point(183, 73);
             this.valueComboBox.Name = "valueComboBox";
-            this.valueComboBox.Size = new System.Drawing.Size(332, 30);
+            this.valueComboBox.Size = new System.Drawing.Size(302, 30);
             this.valueComboBox.TabIndex = 5;
             this.valueComboBox.UseSelectable = true;
             // 
@@ -366,7 +369,7 @@
             this.resultsConclusionLabel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
             this.resultsConclusionLabel.Name = "resultsConclusionLabel";
             this.resultsConclusionLabel.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.resultsConclusionLabel.Size = new System.Drawing.Size(0, 20);
+            this.resultsConclusionLabel.Size = new System.Drawing.Size(0, 20); // AutoSize=true, поэтому Size не так важен
             this.resultsConclusionLabel.TabIndex = 3;
             this.resultsConclusionLabel.WrapToLine = true;
             // 
