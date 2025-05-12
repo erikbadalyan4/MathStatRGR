@@ -71,13 +71,21 @@ namespace MathStatRGR.Utils
 
         public static DataTableCollection GetAllDataTables(string fileName)
         {
+            return GetAllDataTables(fileName, false);
+        }
+
+        public static DataTableCollection GetAllDataTables(string fileName, bool useHeader)
+        {
             using (var stream = File.Open(fileName, FileMode.Open, FileAccess.Read))
             {
                 using (var reader = ExcelReaderFactory.CreateReader(stream))
                 {
                     var result = reader.AsDataSet(new ExcelDataSetConfiguration
                     {
-                        ConfigureDataTable = (_) => new ExcelDataTableConfiguration { UseHeaderRow = false }
+                        ConfigureDataTable = (_) => new ExcelDataTableConfiguration
+                        {
+                            UseHeaderRow = useHeader
+                        },
                     });
 
                     return result.Tables;

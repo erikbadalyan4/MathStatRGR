@@ -255,7 +255,7 @@ namespace MathStatRGR.Pages
                 }
                 else if (extension == ".xlsx" || extension == ".xls" || extension == ".xlsb")
                 {
-                    var dataTableCollection = ExcelTableReader.GetAllDataTables(filePath);
+                    var dataTableCollection = ExcelTableReader.GetAllDataTables(filePath, true);
                     if (dataTableCollection == null || dataTableCollection.Count == 0)
                     {
                         MessageBox.Show("Не удалось прочитать данные из файла Excel или файл пуст.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);

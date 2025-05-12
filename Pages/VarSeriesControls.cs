@@ -153,7 +153,7 @@ namespace MathStatRGR.Pages
 
         private bool LoadDataFromExcel(string filePath, List<string> loadErrors)
         {
-            var dataTableCollection = ExcelTableReader.GetAllDataTables(filePath);
+            var dataTableCollection = ExcelTableReader.GetAllDataTables(filePath, true);
 
             if (dataTableCollection == null || dataTableCollection.Count == 0)
             {
